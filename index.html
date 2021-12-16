@@ -1,0 +1,58 @@
+<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+
+<script>
+AFRAME.registerComponent('vidhandler', {
+
+init: function () {
+    this.toggle = false;
+    this.vid = document.querySelector("#vid");
+    this.vid.pause()
+
+},
+
+tick:function () {
+   if (this.el.object3D.visible == true) {
+    
+    if (!this.toggle){
+       this.toggle = true;
+       this.vid.play();
+    }
+
+  }
+
+  else {
+    this.toggle = false;
+    this.vid.pause();
+  }
+
+   }
+
+});
+
+</script>
+<body style="margin : 0px; overflow: hidden;">
+ 
+  <a-scene
+    vr-mode-ui="enabled: false;"
+    renderer="logarithmicDepthBuffer: true;"
+    embedded
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+  >
+    
+     <a-assets>
+
+       <video id="vid" loop="true" crossorigin="anonymous"
+       src='https://cdn.glitch.com/f8908c29-7a4c-455b-93ca-6172548f04c2%2FBig_Buck_Bunny_Trailer_1080p.ogv.360p.vp9.webm?v=1566582340300'>
+      </video>
+    </a-assets>
+      <a-marker preset="hiro" vidhandler>
+       <a-plane position="1 2 0" scale="2 2 2" width="2" rotation="-90 0 0" material='transparent:true; opacity: 0.7; src:#vid'></a-plane>
+
+      </a-marker>
+
+    
+       
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
