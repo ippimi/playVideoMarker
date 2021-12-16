@@ -31,13 +31,9 @@ tick:function () {
 });
 
 </script>
-<body style="margin : 0px; overflow: hidden;">
+
  
-  <a-scene
-    vr-mode-ui="enabled: false;"
-    renderer="logarithmicDepthBuffer: true;"
-    embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+  <a-scene embedded arjs
   >
     
      <a-assets>
@@ -55,4 +51,3 @@ tick:function () {
        
     <a-entity camera></a-entity>
   </a-scene>
-</body>
